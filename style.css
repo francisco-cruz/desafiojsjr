@@ -1,0 +1,66 @@
+:root {
+  --black: #050505;
+  --white: #fff;
+  --primary-color: #ED6F1D;
+  --primary-color-text: #102732;
+  --background-color: #f5f5f5;
+  --border: 24px;
+  --shadow-form: 0 -2px 30px 0 rgba(0, 0, 0, 0.15)
+}
+
+.my-button-primary {
+  color: var(--white);
+  border-radius: var(--border);
+  background-color: var(--primary-color);
+  
+}
+.my-button-primary:hover {
+  background-color: var(--primary-color);
+  color: var(--white);
+  cursor: pointer;
+}
+.my-button-secundary {
+  color: var(--white);
+  border-radius: var(--border);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--background-color) ;
+  color: var(--primary-color-text);
+}
+
+
+.content {
+  background-color: var(--white);
+  max-width: 600px;
+  /* max-height: 600px;
+  overflow: scroll; */
+  padding: 24px;
+  border-radius: var(--border);
+  box-shadow: var(--shadow-form);
+  margin: 80px  auto;
+}
+
+.content h2 {
+  font-size: clamp(.5em, 2em + 1vw, 3em);
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+a {
+  text-decoration: none;
+  color: var(--primary-color);
+}
+
+a:hover {
+  color: var(--primary-color);
+}
+
