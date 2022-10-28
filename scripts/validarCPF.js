@@ -39,19 +39,19 @@ function validateRepeatedNumber(cpf) {
 
 export function validateCpf(cpf) {
   if (cpf.length != 11) {
-    console.log("numero de caracteres incompativeis");
+    alert('Número de caracteres inválidos!');
     return false;
   }
   if (!validateRepeatedNumber(cpf)) {
-    console.log('numero repetidos');
+    alert('Números repetidos!');
     return false;
   }
   if(!validateFistDigit(cpf)){
-    console.log('primeiro digito invalido');
+    alert('Primeiro digito inválido!');
     return false;
  }
   if(!validateSecondDigit(cpf)){
-    console.log('segundo digito invalido');
+    alert('Segundo digito inválido!');
     return false;
 }
   return true;

@@ -1,14 +1,16 @@
 import {validateCpf, convertCpftoArray } from './validarCPF.js'
+// import {validateCep, convertCeptoArray } from './validateCep.js'
 
 function sendData () {
 
-  let valueInputCpf = document.getElementById("exampleInputCPF").value;
+  let valueInputCpf = document.getElementById("exampleInputCPF").value.replace(/[^0-9]/g, "");
   console.log(valueInputCpf);
   let cpfArray = convertCpftoArray (valueInputCpf);
-  console.log(cpfArray);
+  let cpfValide = validateCpf(cpfArray);
 
- let cpfValide = validateCpf(cpfArray);
- console.log(cpfValide);
+  // let valueInputCep = document.getElementById("exampleInputCEP").value;
+  // let cepArray = convertCeptoArray (valueInputCep);
+  // let cepValide = validateCep(cepArray);
 
 }
 
