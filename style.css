@@ -88,10 +88,6 @@ small {
   visibility: visible;
 }
 
-.my-button-secundary.disable {
-  pointer-events: none;
-  opacity: .5;
-}
 
 a {
   text-decoration: none;
@@ -102,6 +98,16 @@ a:hover {
   color: var(--primary-color);
 }
 
+#add-hobby {
+  position: absolute;
+  top: 38px;
+  right: 8px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #chips {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(50px, 30px));
@@ -109,7 +115,12 @@ a:hover {
   height: auto;
   column-gap: 64px;
   row-gap: 8px;
-  padding: 16px 0;
+  padding-bottom: 24px;
+}
+
+#chips .disable {
+  pointer-events: none;
+  opacity: .5;
 }
 
 .chip {
@@ -121,6 +132,7 @@ a:hover {
   align-items: center;
   gap: 8px;
 }
+
 
 .chip p{
 margin: 0;

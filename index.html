@@ -1,197 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Desafio Dev JS JR</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
-      crossorigin="anonymous"
-    />
-    <link rel="stylesheet" href="style.css" />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="content">
-        <h2 class="primary-color">Preencha as</h2>
-        <h2>Informações</h2>
-        <form class="mt-5" id="form">
-          <div class="mb-3">
-            <label for="exampleInputNome" class="form-label">Nome</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputNome"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputCPF" class="form-label">CPF</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputCPF"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputNascimento" class="form-label"
-              >Data de Nascimento</label
-            >
-            <input
-              type="date"
-              class="form-control"
-              id="exampleInputNascimento"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputIdade" class="form-label">Idade</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputIdade"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputCEP" class="form-label">CEP</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputCEP"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputRua" class="form-label">Rua</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputRua"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputNumero" class="form-label">Número</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputNumero"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputBairro" class="form-label">Bairro</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputBairro"
-            />
-            <small>Message error</small>
-          </div>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Desafio Dev JS JR</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous" />
+  <link rel="stylesheet" href="style.css" />
+</head>
 
-          <div class="mb-3">
-            <label for="exampleInputCidade" class="form-label">Cidade</label>
-            <input
-              type="text"
-              class="form-control"
-              id="exampleInputCidade"
-            />
-            <small>Message error</small>
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputEstado" class="form-label">Estado</label>
-            <select
-              type="text"
-              class="form-control"
-              id="exampleInputEstado"
-            >
-              <option value="">Escolha um Estado</option>
-              <option value="RN">RN</option>
-              <option value="PB">PB</option>
-              <option value="PE">PE</option>
-              <option value="AL">AL</option>
-              <option value="SE">SE</option>
-              <option value="CE">CE</option>
-              <option value="PI">PI</option>
-              <option value="MA">MA</option>
-              <option value="BA">BA</option>
-              <option value="MG">MG</option>
-              <option value="ES">ES</option>
-              <option value="RJ">RJ</option>
-              <option value="SP">SP</option>
-              <option value="PR">PR</option>
-              <option value="SC">SC</option>
-              <option value="RS">RS</option>
-              <option value="MS">MS</option>
-              <option value="GO">GO</option>
-              <option value="MT">MT</option>
-              <option value="DF">DF</option>
-              <option value="TO">TO</option>
-              <option value="PA">PA</option>
-              <option value="AP">AP</option>
-              <option value="RR">RR</option>
-              <option value="AM">AM</option>
-              <option value="RO">RO</option>
-              <option value="AC">AC</option>
-            </select>
-            <small>Message error</small>
-          </div>
-            <div class="mb-3">
-              <div></div>
-              <label for="exampleInputHobby" class="form-label">Hobby</label>
-              <input
-                type="text"
-                class="form-control"
-                id="exampleInputHobby"
-              />
-              <button
-                class="btn btn-small btn-secondary my-button-secundary"
-                type="button"
-                id="add-hobby"
-              >
-                Adicionar
-              </button>
-              <small>Message error</small>
-            </div>
-            <div id="chips"></div>
-  
-          <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" id="Check1" />
-            <label class="form-check-label" for="Check1"
-              >Li e concordo com os termos de
-              <a
-                href="http://strategibrasil.com.br/?page_id=587"
-                target="_blank"
-                >política e privacidade.</a
-              ></label
-            >
-          </div> 
-          <button
-            id="btn-send"
-            type="submit"
-            class="btn btn-lg my-button-form my-button-primary mt-4"
-          >
-            Exibir Dados
+<body>
+  <div class="container">
+    <div class="content">
+      <h2 class="primary-color">Preencha as</h2>
+      <h2>Informações</h2>
+      <form class="mt-5" id="form">
+        <div class="mb-3">
+          <label for="exampleInputNome" class="form-label">Nome</label>
+          <input type="text" class="form-control" id="exampleInputNome" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputCPF" class="form-label">CPF</label>
+          <input type="text" class="form-control" id="exampleInputCPF" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputNascimento" class="form-label">Data de Nascimento</label>
+          <input type="date" class="form-control" id="exampleInputNascimento" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputIdade" class="form-label">Idade</label>
+          <input type="text" class="form-control" id="exampleInputIdade" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputCEP" class="form-label">CEP</label>
+          <input type="text" class="form-control" id="exampleInputCEP" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputRua" class="form-label">Rua</label>
+          <input type="text" class="form-control" id="exampleInputRua" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputNumero" class="form-label">Número</label>
+          <input type="text" class="form-control" id="exampleInputNumero" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputBairro" class="form-label">Bairro</label>
+          <input type="text" class="form-control" id="exampleInputBairro" />
+          <small>Message error</small>
+        </div>
+
+        <div class="mb-3">
+          <label for="exampleInputCidade" class="form-label">Cidade</label>
+          <input type="text" class="form-control" id="exampleInputCidade" />
+          <small>Message error</small>
+        </div>
+        <div class="mb-3">
+          <label for="exampleInputEstado" class="form-label">Estado</label>
+          <select type="text" class="form-control" id="exampleInputEstado">
+            <option value="">Escolha um Estado</option>
+            <option value="RN">RN</option>
+            <option value="PB">PB</option>
+            <option value="PE">PE</option>
+            <option value="AL">AL</option>
+            <option value="SE">SE</option>
+            <option value="CE">CE</option>
+            <option value="PI">PI</option>
+            <option value="MA">MA</option>
+            <option value="BA">BA</option>
+            <option value="MG">MG</option>
+            <option value="ES">ES</option>
+            <option value="RJ">RJ</option>
+            <option value="SP">SP</option>
+            <option value="PR">PR</option>
+            <option value="SC">SC</option>
+            <option value="RS">RS</option>
+            <option value="MS">MS</option>
+            <option value="GO">GO</option>
+            <option value="MT">MT</option>
+            <option value="DF">DF</option>
+            <option value="TO">TO</option>
+            <option value="PA">PA</option>
+            <option value="AP">AP</option>
+            <option value="RR">RR</option>
+            <option value="AM">AM</option>
+            <option value="RO">RO</option>
+            <option value="AC">AC</option>
+          </select>
+          <small>Message error</small>
+        </div>
+        <div class="mb-1 position-relative">
+          <div></div>
+          <label for="exampleInputHobby" class="form-label">Hobby</label>
+          <input type="text" class="form-control" id="exampleInputHobby" />
+          <small>Message error</small>
+          <button class="btn btn-small btn-secondary my-button-secundary" type="button" id="add-hobby">
+            Adicionar
           </button>
-        </form>
+        </div>
+        <div id="chips"></div>
 
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-      crossorigin="anonymous"
-    ></script>
-    <script src="./scripts/index.js"></script>
-    <script src="./scripts/validateCheckbox.js" type="module"></script>
-  </body>
+        <div class="mb-3 form-check">
+          <input type="checkbox" class="form-check-input" id="Check1" />
+          <label class="form-check-label" for="Check1">Li e concordo com os termos de
+            <a href="http://strategibrasil.com.br/?page_id=587" target="_blank">política e privacidade.</a></label>
+        </div>
+        <button id="btn-send" type="submit" class="btn btn-lg my-button-form my-button-primary mt-4"
+          data-bs-toggle="modal" data-bs-target="#exampleModal">
+          Exibir Dados
+        </button>
+      </form>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+  <script src="./scripts/index.js"></script>
+  <script src="./scripts/validateCheckbox.js" type="module"></script>
+</body>
+
 </html>

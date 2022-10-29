@@ -11,12 +11,14 @@ const cidade = document.getElementById('exampleInputCidade');
 const estado = document.getElementById('exampleInputEstado');
 const hobby = document.getElementById('exampleInputHobby');
 const buttonAddHobby = document.getElementById('add-hobby');
+const chipsHobby = document.querySelector('#chips');
 const hobbies = []
 
 // submit form
 form.addEventListener('submit', (e) => {
     e.preventDefault();
-    buttonAddHobby.className = 'btn btn-small btn-secondary my-button-secundary disable'
+
+    chipsHobby.className = 'disable';
     checkInputs()
 })
 
@@ -25,16 +27,18 @@ buttonAddHobby.addEventListener('click', () => {
     checkHobby()
 })
 
+
 function checkHobby() {
-    const hobbyValue = hobby.value.trim();
+    const hobbyValue = hobby.value.toLowerCase();
     const isValideHobby = validateInputHobby(hobby, hobbyValue);
-    console.log(isValideHobby);
+
     if (isValideHobby) {
         hobbies.push(hobbyValue);
         hobby.value = ''
-        renderChip(hobbies)  
+        renderChip(hobbies)
+        successValidation(hobby)
     } else {
-        errorValidation(hobby, "Preencha esse campo");
+        errorValidation(hobby, "Campo vazio");
     }
 }
 
@@ -50,35 +54,37 @@ function checkInputs() {
     const bairroValue = bairro.value.trim();
     const cidadeValue = cidade.value.trim();
     const estadoValue = estado.value.trim();
-    
 
-    validateNome(nome, nomeValue);
-    validateCPF(cpf, cpfValue);
-    validateNascimento(nascimento, nascimentoValue);
-    validateIdade(idade, idadeValue);
-    validateCep(cep, cepValue);
-    validateRua(rua, ruaValue);
-    validateNumero(numero, numeroValue);
-    validateRua(bairro, bairroValue);
-    validateCidade(cidade, cidadeValue);
-    validateEstado(estado, estadoValue);
-    validateHobby(hobby)
-    
 
-    let usuario = {
-        'nome': nomeValue,
-        'cpf': cpfValue,
-        'nascimento': nascimentoValue,
-        'idade': idadeValue,
-        'cep': cepValue,
-        'rua': ruaValue,
-        'cidade': cidadeValue,
-        'estado': estadoValue,
-        'hobbies': hobbies
-    }
+    const valideNome = validateNome(nome, nomeValue);
+    const valideCPF = validateCPF(cpf, cpfValue);
+    const valideNascimento = validateNascimento(nascimento, nascimentoValue);
+    const valideIdade = validateIdade(idade, idadeValue);
+    const valideCEP = validateCEP(cep, cepValue);
+    const valideRua = validateRua(rua, ruaValue);
+    const valideNumero = validateNumero(numero, numeroValue);
+    const valideBairro = validateBairro(bairro, bairroValue);
+    const valideCidade = validateCidade(cidade, cidadeValue);
+    const valideEstado = validateEstado(estado, estadoValue);
+    const valideHobby = validateHobby(hobby);
 
-    console.log(usuario);
- 
+    if (valideNome && valideCPF && valideNascimento && valideIdade && valideCEP && valideRua 
+        && valideNumero && valideBairro && valideCidade && valideEstado && valideHobby) {
+            let usuario = {
+                'nome': nomeValue,
+                'cpf': cpfValue,
+                'nascimento': nascimentoValue,
+                'idade': idadeValue,
+                'cep': cepValue,
+                'rua': ruaValue,
+                'cidade': cidadeValue,
+                'estado': estadoValue,
+                'hobbies': hobbies
+            }
+              
+        openModal(usuario)
+        }
+       
 }
 
 // functions of states validation
@@ -101,9 +107,10 @@ function successValidation(input) {
 function validateNome(input, value) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
+        return false;
+    } 
+    successValidation(input);
+    return true; 
 }
 
 // validate cpf
@@ -115,16 +122,22 @@ function validateCPF(input, value) {
     // invalid cpf cases
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
+        return false;
     } else if (cpf.length != 11) {
         errorValidation(input, "Número de caracteres inválido");
+        return false
     } else if (!validateRepeatedNumber(cpf)) {
         errorValidation(input, "CPF com número repetidos");
+        return false
     } else if (!validateFistDigit(cpf)) {
         errorValidation(input, "Primeiro digito inválido");
+        return false
     } else if (!validateSecondDigit(cpf)) {
         errorValidation(input, "Segundo digito inválido");
+        return false
     } else {
         successValidation(input)
+        return true;
     }
 }
 
@@ -182,7 +195,6 @@ function validateSecondDigit(cpf) {
 function validateNascimento(input, value) {
     const data = value.replace(/\//g, "-"); // validating data characters with Regex
     const dataArray = data.split("-");  // converting data into array separando por "-"
-    const dataCurrent = new Date();
 
     let day = dataArray[2]
     let month = dataArray[1]
@@ -195,10 +207,13 @@ function validateNascimento(input, value) {
 
     if (value == '') {
         errorValidation(input, "Preencha esse campo");
+        return false;
     } else if (valideYaer, valideMonth, valideDay == false) {
-        errorValidation(input, "Data inválido");
+        errorValidation(input, "Data inválida");
+        return false
     } else {
         successValidation(input);
+        return true;
     }
 }
 
@@ -261,69 +276,27 @@ function isValideDay(day, month, leapYear) {
 function validateIdade(input, value) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
+        return false;
     } else {
         successValidation(input)
+        return true;
     }
 }
 
 // validate CEP
-function validateCep(input, value) {
+function validateCEP(input, value) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
+        return false;
     } else {
         successValidation(input)
+        return true
     }
 }
 
 
 //validate rua
 function validateRua(input, value) {
-    if (value === '') {
-        errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
-}
-
-//validate Numero
-function validateNumero(input, value) {
-    if (value === '') {
-        errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
-}
-
-//validate Bairro
-function validateBairro(input, value) {
-    if (value === '') {
-        errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
-}
-
-
-//validate Cidade
-function validateCidade(input, value) {
-    if (value === '') {
-        errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
-}
-
-//validate Estado
-function validateEstado(input, value) {
-    if (value === '') {
-        errorValidation(input, "Preencha esse campo");
-    } else {
-        successValidation(input)
-    }
-}
-
-
-function validateInputHobby(input, value) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
         return false;
@@ -333,17 +306,74 @@ function validateInputHobby(input, value) {
     }
 }
 
-function validateHobby(input) {
-    if (hobbies.length <= 0) {
+//validate Numero
+function validateNumero(input, value) {
+    if (value === '') {
         errorValidation(input, "Preencha esse campo");
+        return false;
     } else {
-        successValidation(input)
+        successValidation(input);
+        return true;
     }
 }
 
-function renderChip (array) {
+//validate Bairro
+function validateBairro(input, value) {
+    if (value === '') {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        successValidation(input);
+        return true;
+    }
+}
+
+
+//validate Cidade
+function validateCidade(input, value) {
+    if (value === '') {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        successValidation(input);
+        return true;
+    }
+}
+
+//validate Estado
+function validateEstado(input, value) {
+    if (value === '') {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        successValidation(input);
+        return true;
+    }
+}
+
+
+function validateInputHobby(input, value) {
+    if (value === '') {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validateHobby(input) {
+    if (hobbies.length <= 0) {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        successValidation(input);
+        return true;
+    }
+}
+
+function renderChip(array) {
     const lastHobby = array.at(-1);
-    
+
     if (lastHobby === '') {
 
     } else {
@@ -355,16 +385,22 @@ function renderChip (array) {
         `
         document.getElementById('chips').innerHTML += chip;
     }
-    
+
 }
 
 function deleteHobbie(hobby) {
-    const indexHobby = hobbies.indexOf(hobby)
+    const indexHobby = hobbies.indexOf(hobby);
+
     hobbies.splice(indexHobby, 1);
-    removeChipScreen(hobby)
+    removeChipOfScreen(hobby);
 }
 
-function removeChipScreen (hobby) {
-     const chipToRemove =  document.querySelector(`.chip#${hobby}`)
-     chipToRemove.remove();
-;}
+function removeChipOfScreen(hobby) {
+    const chipToRemove = document.querySelector(`.chip#${hobby}`);
+    chipToRemove.remove();
+
+}
+
+function openModal (array) {
+
+}
