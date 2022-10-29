@@ -71,6 +71,28 @@ body {
   margin: -5px;
 }
 
+small {
+  visibility: hidden;
+  color: #db5a5a;
+}
+
+.form-control.success {
+  border: 2px solid #4eca4e;
+}
+
+.form-control.error {
+  border: 2px solid #db5a5a;
+}
+
+.form-control.error + small {
+  visibility: visible;
+}
+
+.my-button-secundary.disable {
+  pointer-events: none;
+  opacity: .5;
+}
+
 a {
   text-decoration: none;
   color: var(--primary-color);
@@ -82,9 +104,11 @@ a:hover {
 
 #chips {
   display: grid;
-  max-width: 100%;
-  align-items: flex-start;
-  gap: 8px;
+  grid-template-columns: repeat(auto-fit, minmax(50px, 30px));
+  width: 100%;
+  height: auto;
+  column-gap: 64px;
+  row-gap: 8px;
   padding: 16px 0;
 }
 

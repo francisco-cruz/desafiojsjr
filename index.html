@@ -24,15 +24,15 @@
       <div class="content">
         <h2 class="primary-color">Preencha as</h2>
         <h2>Informações</h2>
-        <form class="mt-5">
+        <form class="mt-5" id="form">
           <div class="mb-3">
             <label for="exampleInputNome" class="form-label">Nome</label>
             <input
-              type="email"
+              type="text"
               class="form-control"
               id="exampleInputNome"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputCPF" class="form-label">CPF</label>
@@ -40,8 +40,8 @@
               type="text"
               class="form-control"
               id="exampleInputCPF"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputNascimento" class="form-label"
@@ -52,6 +52,7 @@
               class="form-control"
               id="exampleInputNascimento"
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputIdade" class="form-label">Idade</label>
@@ -59,8 +60,8 @@
               type="text"
               class="form-control"
               id="exampleInputIdade"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputCEP" class="form-label">CEP</label>
@@ -68,8 +69,8 @@
               type="text"
               class="form-control"
               id="exampleInputCEP"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputRua" class="form-label">Rua</label>
@@ -77,8 +78,8 @@
               type="text"
               class="form-control"
               id="exampleInputRua"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputNumero" class="form-label">Número</label>
@@ -86,8 +87,8 @@
               type="text"
               class="form-control"
               id="exampleInputNumero"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputBairro" class="form-label">Bairro</label>
@@ -95,8 +96,8 @@
               type="text"
               class="form-control"
               id="exampleInputBairro"
-              required
             />
+            <small>Message error</small>
           </div>
 
           <div class="mb-3">
@@ -105,8 +106,8 @@
               type="text"
               class="form-control"
               id="exampleInputCidade"
-              required
             />
+            <small>Message error</small>
           </div>
           <div class="mb-3">
             <label for="exampleInputEstado" class="form-label">Estado</label>
@@ -114,7 +115,6 @@
               type="text"
               class="form-control"
               id="exampleInputEstado"
-              required
             >
               <option value="">Escolha um Estado</option>
               <option value="RN">RN</option>
@@ -145,29 +145,27 @@
               <option value="RO">RO</option>
               <option value="AC">AC</option>
             </select>
+            <small>Message error</small>
           </div>
             <div class="mb-3">
+              <div></div>
               <label for="exampleInputHobby" class="form-label">Hobby</label>
-              <div class="d-flex gap-2">
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="exampleInputHobby"
-                    required
-                  />
-                  <button
-                    class="btn btn-small btn-secondary my-button-secundary"
-                    type="button"
-                    id="addHobbie"
-                  >
-                    Adicionar
-                  </button>
-                </div>
-                <div id="chips">
-
-                </div>
-              </div>
-   
+              <input
+                type="text"
+                class="form-control"
+                id="exampleInputHobby"
+              />
+              <button
+                class="btn btn-small btn-secondary my-button-secundary"
+                type="button"
+                id="add-hobby"
+              >
+                Adicionar
+              </button>
+              <small>Message error</small>
+            </div>
+            <div id="chips"></div>
+  
           <div class="mb-3 form-check">
             <input type="checkbox" class="form-check-input" id="Check1" />
             <label class="form-check-label" for="Check1"
@@ -178,61 +176,22 @@
                 >política e privacidade.</a
               ></label
             >
-          </div>
+          </div> 
           <button
             id="btn-send"
             type="submit"
             class="btn btn-lg my-button-form my-button-primary mt-4"
-            data-bs-toggle="modal"
-            data-bs-target="#staticBackdrop"
           >
             Exibir Dados
           </button>
         </form>
-        <!-- Modal -->
-        <div
-          class="modal fade"
-          id="staticBackdrop"
-          data-bs-backdrop="static"
-          data-bs-keyboard="false"
-          tabindex="-1"
-          aria-labelledby="staticBackdropLabel"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h1 class="modal-title fs-5" id="staticBackdropLabel">
-                  Informações
-                </h1>
-                <button
-                  type="button"
-                  class="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div class="modal-body">
-                <div>
-                  <label for="">Nome</label>
-                  <p>Francisco de Assis</p>
-                </div>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
       crossorigin="anonymous"
     ></script>
-    <script src="./scripts/sendData.js" type="module"></script>
-    <script src="./scripts/validateCep.js" type="module"></script>
+    <script src="./scripts/index.js"></script>
     <script src="./scripts/validateCheckbox.js" type="module"></script>
-    <script src="./scripts/hobbies.js" type="module"></script>
   </body>
 </html>
