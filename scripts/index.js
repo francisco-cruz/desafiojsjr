@@ -11,7 +11,7 @@ const cidade = document.getElementById('exampleInputCidade');
 const estado = document.getElementById('exampleInputEstado');
 const hobby = document.getElementById('exampleInputHobby');
 const buttonAddHobby = document.getElementById('add-hobby');
-let hobbies = []
+const hobbies = []
 
 // submit form
 form.addEventListener('submit', (e) => {
@@ -27,11 +27,15 @@ buttonAddHobby.addEventListener('click', () => {
 
 function checkHobby() {
     const hobbyValue = hobby.value.trim();
-    validateHobby(hobby, hobbyValue);
-
-    hobbies.push(hobbyValue);
-    hobby.innerText = 'oi'
-    renderChip(hobbies)
+    const isValideHobby = validateInputHobby(hobby, hobbyValue);
+    console.log(isValideHobby);
+    if (isValideHobby) {
+        hobbies.push(hobbyValue);
+        hobby.value = ''
+        renderChip(hobbies)  
+    } else {
+        errorValidation(hobby, "Preencha esse campo");
+    }
 }
 
 // check inputs
@@ -58,6 +62,7 @@ function checkInputs() {
     validateRua(bairro, bairroValue);
     validateCidade(cidade, cidadeValue);
     validateEstado(estado, estadoValue);
+    validateHobby(hobby)
     
 
     let usuario = {
@@ -182,7 +187,6 @@ function validateNascimento(input, value) {
     let day = dataArray[2]
     let month = dataArray[1]
     let yaer = dataArray[0]
-    let yaerOld = dataCurrent.getFullYear() - dataArray[0];
 
     let leapYear = isLeapYear(yaer);
     let valideYaer = isValideYaer(yaer);
@@ -319,8 +323,18 @@ function validateEstado(input, value) {
 }
 
 
-function validateHobby(input, value) {
+function validateInputHobby(input, value) {
     if (value === '') {
+        errorValidation(input, "Preencha esse campo");
+        return false;
+    } else {
+        successValidation(input)
+        return true;
+    }
+}
+
+function validateHobby(input) {
+    if (hobbies.length <= 0) {
         errorValidation(input, "Preencha esse campo");
     } else {
         successValidation(input)
@@ -328,24 +342,29 @@ function validateHobby(input, value) {
 }
 
 function renderChip (array) {
-    console.log(array);
-    let lastHobby = array.at(-1);
+    const lastHobby = array.at(-1);
+    
     if (lastHobby === '') {
 
     } else {
         let chip = `
-            <div class="chip">
+            <div class="chip" id="${lastHobby}">
             <p>${lastHobby}</p>
-            <svg onclick="deleteHobbie(${array}, ${lastHobby})" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            <svg onclick="deleteHobbie('${lastHobby}')" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             </div>
         `
         document.getElementById('chips').innerHTML += chip;
-        
     }
     
 }
 
-function deleteHobbie(array, id) {
-    console.log(array);
-    console.log("elemnto achado: " + array.indexOf(id))
+function deleteHobbie(hobby) {
+    const indexHobby = hobbies.indexOf(hobby)
+    hobbies.splice(indexHobby, 1);
+    removeChipScreen(hobby)
 }
+
+function removeChipScreen (hobby) {
+     const chipToRemove =  document.querySelector(`.chip#${hobby}`)
+     chipToRemove.remove();
+;}
