@@ -14,13 +14,16 @@ const buttonAddHobby = document.getElementById('add-hobby');
 const chipsHobby = document.querySelector('#chips');
 const hobbies = []
 
+
 // submit form
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
     chipsHobby.className = 'disable';
+
     checkInputs()
 })
+
 
 // botao de adicionar hobby
 buttonAddHobby.addEventListener('click', () => {
@@ -28,13 +31,16 @@ buttonAddHobby.addEventListener('click', () => {
 })
 
 
-// consumir api Viacep
-cep.addEventListener('focusout', seacherCep(cep ,cep.value));
 
+// consumir api Viacep
+cep.addEventListener('focusout', () => {
+    seacherCep(cep, cep.value)
+});
 
 
 function checkHobby() {
     const hobbyValue = hobby.value.toLowerCase();
+    console.log(hobbyValue);
     const isValideHobby = validateInputHobby(hobby, hobbyValue);
 
     if (isValideHobby) {
@@ -279,7 +285,7 @@ function isValideDay(day, month, leapYear) {
 }
 
 // validate idade
-function validateIdade(input, value) {
+function validateIdade(input, value, isValideCep) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
         return false;
@@ -290,7 +296,7 @@ function validateIdade(input, value) {
 }
 
 // validate CEP
-function validateCEP(input, value) {
+function validateCEP(input, value ) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
         return false;
@@ -306,22 +312,24 @@ function convertCeptoArray(cep) {
 }
 
 
-function seacherCep(value) {
+function seacherCep(input, value) {
     const cep =  value.replace(/[^0-9]/g, "");
-    console.log(cep);
     const cepArray = convertCeptoArray(cep);
 
     if (cepArray.length != 8) {
         errorValidation(input, "CEP inválido");
-    } else {
+        return false;
+    } else if (cep == ''){
+        return false;
+    }else {
         const requestApiCep = new XMLHttpRequest();
      
         requestApiCep.open("GET", `http://viacep.com.br/ws/${cep}/json/`, false);
         requestApiCep.send();
 
         const dataApiCep = (JSON.parse(requestApiCep.responseText));
+        console.log(dataApiCep);
         completeFields(dataApiCep)
-      
     }
 
 }
@@ -329,6 +337,7 @@ function seacherCep(value) {
 //Preencher campos
 function completeFields(response) {
     rua.value = response['logradouro']
+    console.log(rua);
     bairro.value = response['bairro']
     cidade.value = response['localidade']
     estado.value = response['uf']
