@@ -28,6 +28,11 @@ buttonAddHobby.addEventListener('click', () => {
 })
 
 
+// consumir api Viacep
+cep.addEventListener('focusout', seacherCep(cep ,cep.value));
+
+
+
 function checkHobby() {
     const hobbyValue = hobby.value.toLowerCase();
     const isValideHobby = validateInputHobby(hobby, hobbyValue);
@@ -68,23 +73,24 @@ function checkInputs() {
     const valideEstado = validateEstado(estado, estadoValue);
     const valideHobby = validateHobby(hobby);
 
-    if (valideNome && valideCPF && valideNascimento && valideIdade && valideCEP && valideRua 
+    // se todas as variáveis forem verdadeiras irá montar o objeto usuário
+    if (valideNome && valideCPF && valideNascimento && valideIdade && valideCEP && valideRua
         && valideNumero && valideBairro && valideCidade && valideEstado && valideHobby) {
-            let usuario = {
-                'nome': nomeValue,
-                'cpf': cpfValue,
-                'nascimento': nascimentoValue,
-                'idade': idadeValue,
-                'cep': cepValue,
-                'rua': ruaValue,
-                'cidade': cidadeValue,
-                'estado': estadoValue,
-                'hobbies': hobbies
-            }
-              
-        openModal(usuario)
+        const usuario = {
+            'nome': nomeValue,
+            'cpf': cpfValue,
+            'nascimento': nascimentoValue,
+            'idade': idadeValue,
+            'cep': cepValue,
+            'rua': ruaValue,
+            'cidade': cidadeValue,
+            'estado': estadoValue,
+            'hobbies': hobbies
         }
-       
+
+        openModal(usuario)
+    }
+
 }
 
 // functions of states validation
@@ -108,9 +114,9 @@ function validateNome(input, value) {
     if (value === '') {
         errorValidation(input, "Preencha esse campo");
         return false;
-    } 
+    }
     successValidation(input);
-    return true; 
+    return true;
 }
 
 // validate cpf
@@ -208,7 +214,7 @@ function validateNascimento(input, value) {
     if (value == '') {
         errorValidation(input, "Preencha esse campo");
         return false;
-    } else if (valideYaer, valideMonth, valideDay == false) {
+    } else if (!(valideYaer && valideMonth && valideDay)) {
         errorValidation(input, "Data inválida");
         return false
     } else {
@@ -289,9 +295,43 @@ function validateCEP(input, value) {
         errorValidation(input, "Preencha esse campo");
         return false;
     } else {
-        successValidation(input)
+        successValidation(input);
         return true
     }
+}
+
+function convertCeptoArray(cep) {
+    const cepArray = cep.split('').map((e) => parseInt(e));
+    return cepArray;
+}
+
+
+function seacherCep(value) {
+    const cep =  value.replace(/[^0-9]/g, "");
+    console.log(cep);
+    const cepArray = convertCeptoArray(cep);
+
+    if (cepArray.length != 8) {
+        errorValidation(input, "CEP inválido");
+    } else {
+        const requestApiCep = new XMLHttpRequest();
+     
+        requestApiCep.open("GET", `http://viacep.com.br/ws/${cep}/json/`, false);
+        requestApiCep.send();
+
+        const dataApiCep = (JSON.parse(requestApiCep.responseText));
+        completeFields(dataApiCep)
+      
+    }
+
+}
+
+//Preencher campos
+function completeFields(response) {
+    rua.value = response['logradouro']
+    bairro.value = response['bairro']
+    cidade.value = response['localidade']
+    estado.value = response['uf']
 }
 
 
@@ -401,6 +441,3 @@ function removeChipOfScreen(hobby) {
 
 }
 
-function openModal (array) {
-
-}
