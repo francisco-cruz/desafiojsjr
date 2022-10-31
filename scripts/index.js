@@ -15,10 +15,22 @@ const buttonAddHobby = document.getElementById("add-hobby");
 const chipsHobby = document.querySelector("#chips");
 const checkBox = document.getElementById('Check1');
 const buttonSend = document.getElementById('btn-send')
+const closeModal = document.getElementById('close-modal');
+const modal = document.getElementById('modal-background');
 
-console.log(checkBox);
 
 
+buttonSend.addEventListener('click', () => {
+  modal.style.display = 'block'
+} )
+
+closeModal.addEventListener('click', () => {
+  modal.style.display = 'none'
+})
+
+function renderUsuarioOnModal (usuario) {
+  
+}
 
 
 // submit form
@@ -80,7 +92,7 @@ function checkInputs() {
   const valideEstado = validateEstado(estado, estadoValue);
   const valideHobby = validateHobby(hobby);
   const valideCheckBox = validateCheckBox(checkBox)
-  console.log(valideCheckBox+ " aquiuiuiui");
+ 
 
   // se todas as variáveis forem verdadeiras irá montar o objeto usuário
   if (
@@ -109,7 +121,7 @@ function checkInputs() {
       hobbies: hobbies,
     };
 
-    openModal(usuario);
+    renderUsuarioOnModal(usuario)
   }
 }
 
