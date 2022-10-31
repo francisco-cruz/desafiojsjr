@@ -18,18 +18,29 @@ const buttonSend = document.getElementById('btn-send')
 const closeModal = document.getElementById('close-modal');
 const modal = document.getElementById('modal-background');
 
+console.log(buttonAddHobby);
 
 
-buttonSend.addEventListener('click', () => {
+
+function openModal (usuario) {
+  renderUsuarioOnModal(usuario)
+  console.log(usuario);
   modal.style.display = 'block'
-} )
 
-closeModal.addEventListener('click', () => {
-  modal.style.display = 'none'
-})
+  closeModal.addEventListener('click', () => {
+    modal.style.display = 'none'
+    location.reload();
+  })
+
+
+}
 
 function renderUsuarioOnModal (usuario) {
-  
+
+  const json = JSON.stringify(usuario);
+
+  const usuarioJson = `<p class="text-json">${json}<p/>`
+  document.getElementById("modal-conteudo").innerHTML += usuarioJson;
 }
 
 
@@ -44,6 +55,7 @@ form.addEventListener("submit", (e) => {
 
 // botao de adicionar hobby
 buttonAddHobby.addEventListener("click", () => {
+  console.log("entrou aqui");
   checkHobby();
 });
 
@@ -54,7 +66,6 @@ cep.addEventListener("focusout", () => {
 
 function checkHobby() {
   const hobbyValue = hobby.value.toLowerCase();
-  console.log(hobbyValue);
   const isValideHobby = validateInputHobby(hobby, hobbyValue);
 
   if (isValideHobby) {
@@ -96,18 +107,19 @@ function checkInputs() {
 
   // se todas as variáveis forem verdadeiras irá montar o objeto usuário
   if (
-    valideNome &&
-    valideCPF &&
-    valideNascimento &&
-    valideIdade &&
-    valideCEP &&
-    valideRua &&
-    valideNumero &&
-    valideBairro &&
-    valideCidade &&
-    valideEstado &&
-    valideHobby &&
-    valideCheckBox
+    valideNome 
+    // &&
+    // valideCPF &&
+    // valideNascimento &&
+    // valideIdade &&
+    // valideCEP &&
+    // valideRua &&
+    // valideNumero &&
+    // valideBairro &&
+    // valideCidade &&
+    // valideEstado &&
+    // valideHobby &&
+    // valideCheckBox
   ) {
     const usuario = {
       nome: nomeValue,
@@ -121,7 +133,7 @@ function checkInputs() {
       hobbies: hobbies,
     };
 
-    renderUsuarioOnModal(usuario)
+    openModal(usuario)
   }
 }
 
