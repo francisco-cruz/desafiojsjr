@@ -19,8 +19,6 @@
   color: var(--white);
   border-radius: var(--border);
   background-color: var(--primary-color);
-  pointer-events: none;
-  opacity: .5;
 }
 
 .my-button-primary.enable {
