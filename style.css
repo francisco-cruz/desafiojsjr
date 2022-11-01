@@ -109,10 +109,11 @@ a:hover {
 
 #chips {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, 30px));
-  width: 100%;
+  grid-template-columns: repeat(auto-fit, minmax(50px, auto));
+  justify-content: flex-start;
+  max-width: 100%;
   height: auto;
-  column-gap: 64px;
+  column-gap: 8px;
   row-gap: 8px;
   padding-bottom: 24px;
 }
@@ -126,6 +127,7 @@ a:hover {
   border: 1px solid var(--primary-color);
   border-radius: var(--border);
   width: fit-content;
+  height: 32px;
   display: flex;
   padding: 0px 8px;
   align-items: center;

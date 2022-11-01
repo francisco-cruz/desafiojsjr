@@ -1,9 +1,13 @@
 # desafiojsjr
 Repositório dedicado ao desafio da vaga para desenvolvedor JavaScript Junior.
 
-#Francisco de Assis Araújo da Cruz
+#Validações
+    #CPF
+    #CEP
+    #Nascimento
 
 #Referências
-    #https://www.calculadorafacil.com.br/computacao/validar-cpf
-    #
+    # Cálculo para validar CPF: https://www.calculadorafacil.com.br/computacao/validar-cpf
+    
+    
     
