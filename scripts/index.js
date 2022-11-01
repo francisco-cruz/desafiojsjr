@@ -13,6 +13,8 @@ const hobby = document.getElementById("exampleInputHobby");
 export const hobbies = [];
 const buttonAddHobby = document.getElementById("add-hobby");
 const checkBox = document.getElementById('Check1');
+const closeChip = document.getElementById('close-chip');
+console.log(closeChip);
 
 //
 import { validateNome } from "./validateNome.js";
@@ -38,7 +40,7 @@ form.addEventListener("submit", (e) => {
 });
 
 
-// Botao adicionar Hobby
+// Botão adicionar Hobby
 buttonAddHobby.addEventListener("click", () => {
   if(validateHobbyToArray(hobby, hobby.value)) {
     hobbies.push(hobby.value);
