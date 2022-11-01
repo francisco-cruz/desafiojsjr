@@ -9,14 +9,14 @@ export function validateNascimento(input, value) {
   const leapYear = isLeapYear(yaer), valideYaer = isValideYaer(yaer), valideMonth = isValideMonth(month),
     valideDay = isValideDay(day, month, leapYear);
 
-  if (value == "") {
+  if (nascimentoRegex === "") {
     errorValidation(input, "Preencha esse campo");
     return false;
-  }
-  else if (!(valideYaer && valideMonth && valideDay)) {
+  } else if (!(valideYaer && valideMonth && valideDay)) {
     errorValidation(input, "Data inválida");
     return false;
   }
+
   successValidation(input);
   return true;
 }

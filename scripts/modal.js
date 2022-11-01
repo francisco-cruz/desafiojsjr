@@ -3,20 +3,30 @@ const modal = document.getElementById('modal-background');
 
 // Abrir modal
 export function openModal(usuario) {
-    renderUsuarioOnModal(usuario)
-    modal.style.display = 'block'
+  renderUsuarioOnModal(usuario)
+  showModal(modal)
 
-    closeModal.addEventListener('click', () => {
-      modal.style.display = 'none'
-      location.reload();
-    })
-  }
+  closeModal.addEventListener('click', () => {
+    removeModal(modal)
+    location.reload();
+  })
+}
 
-  // Renderizar o JSON do usuario no modal
-  function renderUsuarioOnModal(usuario) {
-    const usuarioJson = JSON.stringify(usuario);
-    const htmlUsuarioJson = `<p class="text-json">${usuarioJson}<p/>`
-    document.getElementById("modal-conteudo").innerHTML += htmlUsuarioJson;
-  }
-  
-  
+// Renderizar o JSON do usuario no modal
+function renderUsuarioOnModal(usuario) {
+  const usuarioJson = JSON.stringify(usuario);
+  const htmlUsuarioJson = `<p class="text-json">${usuarioJson}<p/>`
+
+  document.getElementById("modal-conteudo").innerHTML += htmlUsuarioJson;
+}
+
+// Mostrar modal na tela
+function showModal(modal) {
+  modal.style.display = 'block'
+}
+
+// Remover modal da tela
+function removeModal(modal) {
+  modal.style.display = 'none'
+}
+

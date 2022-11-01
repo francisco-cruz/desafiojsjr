@@ -3,12 +3,13 @@ import { successValidation } from "./statesValidation/successValidation.js"
 
 // Validar rua
 export function validateRua(input, value) {
-    if (value === "") {
-      errorValidation(input, "Preencha esse campo");
-      return false;
-    } 
-    
-    successValidation(input);
-    return true;
+  const ruaRegex = value.replace(/[0-9]/g, "");
+
+  if (ruaRegex === "") {
+    errorValidation(input, "Preencha esse campo");
+    return false;
   }
-  
+
+  successValidation(input);
+  return true;
+}
