@@ -24,23 +24,17 @@ export function validateNascimento(input, value) {
 // Múltiplos de 4, mas que não são múltiplos de 100.
 // Todos os não múltiplos de 400 são bissextos.
 function isLeapYear(yaer) {
-  if ((yaer % 4 == 0 && yaer % 100 != 0) || yaer % 400 == 0) {
-    return true;
-  }
-
-  return false;
+  if ((yaer % 4 == 0 && yaer % 100 != 0) || yaer % 400 == 0) {return true;}return false;
 }
 
 // Validação do ano
 function isValideYaer(yaer) {
-  if ((yaer) => 0) { return true; }
-  return false;
+  if (yaer => 0) { return true; }return false;
 }
 
 // Validação do mes
 function isValideMonth(month) {
-  if (month >= 1 && month <= 12) { return true; }
-  return false;
+  if (month >= 1 && month <= 12) { return true; }return false;
 }
 
 // Validação do dia

@@ -4,7 +4,9 @@ import { successValidation } from "./statesValidation/successValidation.js"
 
 //Validar Estado
 export function validateEstado(input, value) {
-    if (value === "") {
+  const estadoRegex = value.replace(/[0-9]/g, "");
+
+    if (estadoRegex === "") {
       errorValidation(input, "Preencha esse campo");
       return false;
     } 

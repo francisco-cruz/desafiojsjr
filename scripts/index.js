@@ -1,3 +1,16 @@
+import { validateNome } from "./validateNome.js";
+import { validateCPF } from "./validateCPF.js";
+import { validateNascimento } from "./validateNascimento.js";
+import { validateIdade } from "./validateIdade.js";
+import { validateCEP, seacherCep } from "./validateCEP.js";
+import { validateRua } from "./validateRua.js";
+import { validateNumero } from "./validateNumero.js";
+import { validateBairro } from "./validateBairro.js";
+import { validateCidade } from "./validateCidade.js";
+import { validateEstado } from "./validateEstado.js";
+import { validateHobby, validateHobbyToArray, renderChip  } from "./validateHobby.js";
+import { validateCheckBox } from "./validateCheckbox.js"
+import { openModal } from "./modal.js"
 const form = document.getElementById("form");
 const nome = document.getElementById("exampleInputNome");
 const cpf = document.getElementById("exampleInputCPF");
@@ -13,24 +26,6 @@ const hobby = document.getElementById("exampleInputHobby");
 export const hobbies = [];
 const buttonAddHobby = document.getElementById("add-hobby");
 const checkBox = document.getElementById('Check1');
-const closeChip = document.getElementById('close-chip');
-console.log(closeChip);
-
-//
-import { validateNome } from "./validateNome.js";
-import { validateCPF } from "./validateCPF.js";
-import { validateNascimento } from "./validateNascimento.js";
-import { validateIdade } from "./validateIdade.js";
-import { validateCEP, seacherCep } from "./validateCEP.js";
-import { validateRua } from "./validateRua.js";
-import { validateNumero } from "./validateNumero.js";
-import { validateBairro } from "./validateBairro.js";
-import { validateCidade } from "./validateCidade.js";
-import { validateEstado } from "./validateEstado.js";
-import { validateHobby, validateHobbyToArray, renderChip  } from "./validateHobby.js";
-import { validateCheckBox } from "./validateCheckbox.js"
-import { openModal } from "./modal.js"
-//
 
 
 // "Enviar" formulário
@@ -68,7 +63,6 @@ function checkInputs() {
   const bairroValue = bairro.value.trim();
   const cidadeValue = cidade.value.trim();
   const estadoValue = estado.value.trim();
-
   const valideNome = validateNome(nome, nomeValue);
   const valideCPF = validateCPF(cpf, cpfValue);
   const valideNascimento = validateNascimento(nascimento, nascimentoValue);
@@ -81,7 +75,6 @@ function checkInputs() {
   const valideEstado = validateEstado(estado, estadoValue);
   const valideHobby = validateHobby(hobby);
   const valideCheckBox = validateCheckBox(checkBox)
-
 
   // Se todas as variáveis forem verdadeiras irá montar o objeto usuário
   if (
