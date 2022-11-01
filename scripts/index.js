@@ -18,13 +18,10 @@ const buttonSend = document.getElementById('btn-send')
 const closeModal = document.getElementById('close-modal');
 const modal = document.getElementById('modal-background');
 
-console.log(buttonAddHobby);
-
-
 
 function openModal (usuario) {
   renderUsuarioOnModal(usuario)
-  console.log(usuario);
+  
   modal.style.display = 'block'
 
   closeModal.addEventListener('click', () => {
@@ -55,7 +52,6 @@ form.addEventListener("submit", (e) => {
 
 // botao de adicionar hobby
 buttonAddHobby.addEventListener("click", () => {
-  console.log("entrou aqui");
   checkHobby();
 });
 
@@ -105,21 +101,20 @@ function checkInputs() {
   const valideCheckBox = validateCheckBox(checkBox)
  
 
-  // se todas as variáveis forem verdadeiras irá montar o objeto usuário
+  // Se todas as variáveis forem verdadeiras irá montar o objeto usuário
   if (
-    valideNome 
-    // &&
-    // valideCPF &&
-    // valideNascimento &&
-    // valideIdade &&
-    // valideCEP &&
-    // valideRua &&
-    // valideNumero &&
-    // valideBairro &&
-    // valideCidade &&
-    // valideEstado &&
-    // valideHobby &&
-    // valideCheckBox
+    valideNome &&
+    valideCPF &&
+    valideNascimento &&
+    valideIdade &&
+    valideCEP &&
+    valideRua &&
+    valideNumero &&
+    valideBairro &&
+    valideCidade &&
+    valideEstado &&
+    valideHobby &&
+    valideCheckBox
   ) {
     const usuario = {
       nome: nomeValue,
@@ -163,12 +158,10 @@ function validateNome(input, value) {
 
 // validate cpf
 function validateCPF(input, value) {
-  // validating characters with Regex
+
   const cpfFormat = value.replace(/[^0-9]/g, "");
-  // converting cpfFormat into array
   const cpf = convertCpfToArray(cpfFormat);
-  console.log(cpf);
-  // invalid cpf cases
+
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
     return false;
@@ -190,13 +183,13 @@ function validateCPF(input, value) {
   }
 }
 
-//convert cpf to array
+// Converter CPF em Array
 function convertCpfToArray(cpf) {
   const cpfArray = cpf.split("").map((e) => parseInt(e));
   return cpfArray;
 }
 
-//validate repeated number cpf
+// Validar numero repetidos do cpf
 function validateRepeatedNumber(cpf) {
   const fistDigit = cpf[0];
   let differentNumber = false;
@@ -209,7 +202,7 @@ function validateRepeatedNumber(cpf) {
   return differentNumber;
 }
 
-//validate fist digit cpf
+// Validar primeiro digito do cpf
 function validateFistDigit(cpf) {
   let sum = 0;
 
@@ -225,7 +218,7 @@ function validateFistDigit(cpf) {
   return cpf[9] == 0;
 }
 
-//validate second digit cpf
+//  Validar segundo digito do cpf
 function validateSecondDigit(cpf) {
   let sum = 0;
   for (let i = 0; i < 10; i++) {
@@ -240,10 +233,10 @@ function validateSecondDigit(cpf) {
   return cpf[10] == 0;
 }
 
-// validate nascimento
+// validar data de nascimento
 function validateNascimento(input, value) {
-  const data = value.replace(/\//g, "-"); // validating data characters with Regex
-  const dataArray = data.split("-"); // converting data into array separando por "-"
+  const data = value.replace(/\//g, "-"); 
+  const dataArray = data.split("-");
 
   let day = dataArray[2];
   let month = dataArray[1];
@@ -328,7 +321,7 @@ function isValideDay(day, month, leapYear) {
 }
 
 // validate idade
-function validateIdade(input, value, isValideCep) {
+function validateIdade(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
     return false;
@@ -349,29 +342,39 @@ function validateCEP(input, value) {
   }
 }
 
+// Convertendo cep em Array
 function convertCeptoArray(cep) {
   const cepArray = cep.split("").map((e) => parseInt(e));
   return cepArray;
 }
 
+
+// Integração da api Viacep
 function seacherCep(input, value) {
   const cep = value.replace(/[^0-9]/g, "");
   const cepArray = convertCeptoArray(cep);
 
   if (cepArray.length != 8) {
     errorValidation(input, "CEP inválido");
-  } else {
+  } 
+
     const requestApiCep = new XMLHttpRequest();
 
     requestApiCep.open("GET", `http://viacep.com.br/ws/${cep}/json/`, false);
     requestApiCep.send();
 
     const dataApiCep = JSON.parse(requestApiCep.responseText);
-    completeFields(dataApiCep);
-  }
-}
 
-//Preencher campos
+    if(dataApiCep['erro']) {
+      errorValidation(input, "Ocorreu um erro ao buscar esse cep.");
+    } else {
+      completeFields(dataApiCep);
+      successValidation(input);
+    }
+  
+  }
+
+//Preencher campos com dados da api
 function completeFields(response) {
   rua.value = response["logradouro"];
   bairro.value = response["bairro"];
@@ -379,7 +382,7 @@ function completeFields(response) {
   estado.value = response["uf"];
 }
 
-//validate rua
+// Validar rua
 function validateRua(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -390,7 +393,7 @@ function validateRua(input, value) {
   }
 }
 
-//validate Numero
+// Validar Numero
 function validateNumero(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -401,7 +404,7 @@ function validateNumero(input, value) {
   }
 }
 
-//validate Bairro
+//Validar Bairro
 function validateBairro(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -412,7 +415,7 @@ function validateBairro(input, value) {
   }
 }
 
-//validate Cidade
+//Validar Cidade
 function validateCidade(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -423,7 +426,7 @@ function validateCidade(input, value) {
   }
 }
 
-//validate Estado
+//Valida Estado
 function validateEstado(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -434,6 +437,7 @@ function validateEstado(input, value) {
   }
 }
 
+// Validar Input Hobby 
 function validateInputHobby(input, value) {
   if (value === "") {
     errorValidation(input, "Preencha esse campo");
@@ -443,6 +447,8 @@ function validateInputHobby(input, value) {
   }
 }
 
+
+// Validar Hobby
 function validateHobby(input) {
   if (hobbies.length <= 0) {
     errorValidation(input, "Preencha esse campo");
@@ -453,6 +459,7 @@ function validateHobby(input) {
   }
 }
 
+// Renderizar os chips na tela
 function renderChip(array) {
   const lastHobby = array.at(-1);
 
@@ -468,6 +475,7 @@ function renderChip(array) {
   }
 }
 
+// Deletar Hobby
 function deleteHobbie(hobby) {
   const indexHobby = hobbies.indexOf(hobby);
 
@@ -475,11 +483,14 @@ function deleteHobbie(hobby) {
   removeChipOfScreen(hobby);
 }
 
+
+// Remover os chips da tela
 function removeChipOfScreen(hobby) {
   const chipToRemove = document.querySelector(`.chip#${hobby}`);
   chipToRemove.remove();
 }
 
+// Validar CheckBox
 function validateCheckBox (input) {
     if (input.checked) {
         return true;
