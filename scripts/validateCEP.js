@@ -24,7 +24,6 @@ export function validateCEP(input, value) {
     
     if (dataApi["erro"]) {
         errorValidation(input, "Ocorreu um erro ao buscar esse CEP");
-        console.log("edufygsaduytf");
         return false;
     }
 

@@ -20,9 +20,6 @@ export function validateNascimento(input, value) {
     return false;
   }
 
-
-  console.log(isFutureDate(value));
-  console.log(valideYaer, valideMonth, valideDay)
   if (isFutureDate(value) || !(valideYaer && valideMonth && valideDay)) {
     errorValidation(input, "Data inválida");
     return false;

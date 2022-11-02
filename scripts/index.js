@@ -8,7 +8,7 @@ import { validateNumero } from "./validateNumero.js";
 import { validateBairro } from "./validateBairro.js";
 import { validateCidade } from "./validateCidade.js";
 import { validateEstado } from "./validateEstado.js";
-import { validateHobby, validateHobbyToArray, renderChip  } from "./validateHobby.js";
+import { validateHobby, validateHobbyToArray, renderChip } from "./validateHobby.js";
 import { validateCheckBox } from "./validateCheckbox.js"
 import { openModal } from "./modal.js"
 import { errorValidation } from "./statesValidation/errorValidation.js"
@@ -39,27 +39,27 @@ form.addEventListener("submit", (e) => {
 // Botão adicionar Hobby
 buttonAddHobby.addEventListener("click", () => {
   const hobbyRegex = hobby.value.replace(/[0-9]/g, "").trim();
-console.log(hobbyRegex);
   const isValideHobbyOnArray = validateHobbyToArray(hobby, hobbyRegex);
 
-  if(isValideHobbyOnArray) {
+  if (isValideHobbyOnArray) {
     hobbies.push(hobbyRegex);
     hobby.value = "";
     renderChip(hobbyRegex);
   }
 });
 
+
 // Consumir api Viacep
 cep.addEventListener("focusout", () => {
-  const oioi = seacherCep(cep, cep.value);
-  
+  const dataApi = seacherCep(cep, cep.value);
+
   // Validando CEP
-  if (oioi['erro']) {
+  if (dataApi['erro']) {
     errorValidation(cep, "Ocorreu um erro ao buscar esse CEP");
     return
   }
 
-  completeFields(oioi)
+  completeFields(dataApi)
 });
 
 
@@ -85,7 +85,7 @@ function checkInputs() {
   const valideBairro = validateBairro(bairro, bairroValue);
   const valideCidade = validateCidade(cidade, cidadeValue);
   const valideEstado = validateEstado(estado, estadoValue);
-  const valideHobby = validateHobby(hobby );
+  const valideHobby = validateHobby(hobby);
   const valideCheckBox = validateCheckBox(checkBox)
 
   // Se todas as variáveis forem verdadeiras irá montar o objeto usuário
