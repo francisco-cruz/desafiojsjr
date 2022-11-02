@@ -56,7 +56,7 @@ cep.addEventListener("focusout", () => {
   // Validando CEP
   if (dataApi['erro']) {
     errorValidation(cep, "Ocorreu um erro ao buscar esse CEP");
-    return
+    return false;
   }
 
   completeFields(dataApi)

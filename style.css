@@ -29,11 +29,13 @@
   pointer-events: fill;
   opacity: 1;
 }
+
 .my-button-primary:hover {
   background-color: var(--primary-color);
   color: var(--white);
   cursor: pointer;
 }
+
 .my-button-secundary {
   color: var(--white);
   border-radius: var(--border);
@@ -51,12 +53,9 @@ body {
   color: var(--primary-color-text);
 }
 
-
 .content {
   background-color: var(--white);
   max-width: 600px;
-  /* max-height: 600px;
-  overflow: scroll; */
   padding: 48px 32px;
   border-radius: var(--border);
   box-shadow: var(--shadow-form);
@@ -86,7 +85,6 @@ small {
 .form-control.error + small {
   visibility: visible;
 }
-
 
 a {
   text-decoration: none;

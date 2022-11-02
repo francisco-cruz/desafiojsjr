@@ -1,5 +1,6 @@
 const closeModal = document.getElementById('close-modal');
 const modal = document.getElementById('modal-background');
+const bodyHtml = document.getElementsByTagName('html');
 
 // Abrir modal
 export function openModal(usuario) {
@@ -23,10 +24,12 @@ function renderUsuarioOnModal(usuario) {
 // Mostrar modal na tela
 function showModal(modal) {
   modal.style.display = 'block'
+  bodyHtml[0].style.overflow = 'hidden';
 }
 
 // Remover modal da tela
 function removeModal(modal) {
   modal.style.display = 'none'
+  bodyHtml[0].style.overflow = 'scroll';
 }
 
