@@ -63,7 +63,7 @@ body {
 }
 
 .content h2 {
-  font-size: clamp(.5em, 2em + 1vw, 4em);
+  font-size: clamp(.5em, 2.5em + 1vw, 4em);
   font-weight: bold;
   text-transform: uppercase;
   margin: -5px;
@@ -97,12 +97,13 @@ a:hover {
 
 #add-hobby {
   position: absolute;
-  top: 38px;
+  top: 12px;
   right: 8px;
   height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 8px;
 }
 
 #chips {
