@@ -15,6 +15,19 @@ export function validateCEP(input, value) {
         return false;
     }
 
+    if(cepRegex.length < 8) {
+        errorValidation(input, "CEP inválido");
+        return false;
+    }
+
+    const dataApi = seacherCep(input, value)
+    
+    if (dataApi["erro"]) {
+        errorValidation(input, "Ocorreu um erro ao buscar esse CEP");
+        console.log("edufygsaduytf");
+        return false;
+    }
+
     successValidation(input);
     return true;
 }
@@ -27,20 +40,13 @@ export function seacherCep(input, value) {
     requestApiCep.open("GET", `http://viacep.com.br/ws/${cepRegex}/json/`, false);
     requestApiCep.send();
 
-    const dataApiCep = JSON.parse(requestApiCep.responseText);
+    return JSON.parse(requestApiCep.responseText);
 
-    // Validando CEP
-    if (dataApiCep['erro']) {
-        errorValidation(input, "Ocorreu um erro ao buscar esse CEP");
-        return false;
-    }
-
-    completeFields(dataApiCep);
 }
 
 
 //Preencher campos com dados da api
-function completeFields(dataApiCep) {
+export function completeFields(dataApiCep) {
     rua.value = dataApiCep["logradouro"];
     bairro.value = dataApiCep["bairro"];
     cidade.value = dataApiCep["localidade"];

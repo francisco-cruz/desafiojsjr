@@ -36,7 +36,7 @@
         </div>
         <div class="mb-3">
           <label for="exampleInputIdade" class="form-label">Idade</label>
-          <input type="text" class="form-control" id="exampleInputIdade" />
+          <input type="number" min="1" class="form-control" id="exampleInputIdade" />
           <small>Message error</small>
         </div>
         <div class="mb-3">
@@ -111,10 +111,13 @@
         <div id="chips"></div>
 
         <div class="mb-3 form-check">
-          <input type="checkbox" class="form-check-input" id="Check1" />
-          <label class="form-check-label" for="Check1">Li e concordo com os termos de
-            <a href="http://strategibrasil.com.br/?page_id=587" target="_blank">política e privacidade.</a></label>
+          <div>
+            <input type="checkbox" class="form-check-input" id="Check1" />
+            <label class="form-check-label" for="Check1">Li e concordo com os termos de
+              <a href="http://strategibrasil.com.br/?page_id=587" target="_blank">política e privacidade.</a></label>
           </div>
+          <small id="small">Message error</small>
+        </div>
         <button id="btn-send" type="submit" class="btn btn-lg my-button-form my-button-primary mt-4"
           data-bs-toggle="modal" data-bs-target="#exampleModal">
           Exibir Dados

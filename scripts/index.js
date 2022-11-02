@@ -2,7 +2,7 @@ import { validateNome } from "./validateNome.js";
 import { validateCPF } from "./validateCPF.js";
 import { validateNascimento } from "./validateNascimento.js";
 import { validateIdade } from "./validateIdade.js";
-import { validateCEP, seacherCep } from "./validateCEP.js";
+import { validateCEP, seacherCep, completeFields } from "./validateCEP.js";
 import { validateRua } from "./validateRua.js";
 import { validateNumero } from "./validateNumero.js";
 import { validateBairro } from "./validateBairro.js";
@@ -11,6 +11,7 @@ import { validateEstado } from "./validateEstado.js";
 import { validateHobby, validateHobbyToArray, renderChip  } from "./validateHobby.js";
 import { validateCheckBox } from "./validateCheckbox.js"
 import { openModal } from "./modal.js"
+import { errorValidation } from "./statesValidation/errorValidation.js"
 const form = document.getElementById("form");
 const nome = document.getElementById("exampleInputNome");
 const cpf = document.getElementById("exampleInputCPF");
@@ -37,17 +38,28 @@ form.addEventListener("submit", (e) => {
 
 // Botão adicionar Hobby
 buttonAddHobby.addEventListener("click", () => {
-  if(validateHobbyToArray(hobby, hobby.value)) {
-    hobbies.push(hobby.value);
+  const hobbyRegex = hobby.value.replace(/[0-9]/g, "").trim();
+console.log(hobbyRegex);
+  const isValideHobbyOnArray = validateHobbyToArray(hobby, hobbyRegex);
+
+  if(isValideHobbyOnArray) {
+    hobbies.push(hobbyRegex);
     hobby.value = "";
-    renderChip(hobbies);
+    renderChip(hobbyRegex);
   }
 });
 
-
 // Consumir api Viacep
 cep.addEventListener("focusout", () => {
-  seacherCep(cep, cep.value);
+  const oioi = seacherCep(cep, cep.value);
+  
+  // Validando CEP
+  if (oioi['erro']) {
+    errorValidation(cep, "Ocorreu um erro ao buscar esse CEP");
+    return
+  }
+
+  completeFields(oioi)
 });
 
 
@@ -73,7 +85,7 @@ function checkInputs() {
   const valideBairro = validateBairro(bairro, bairroValue);
   const valideCidade = validateCidade(cidade, cidadeValue);
   const valideEstado = validateEstado(estado, estadoValue);
-  const valideHobby = validateHobby(hobby);
+  const valideHobby = validateHobby(hobby );
   const valideCheckBox = validateCheckBox(checkBox)
 
   // Se todas as variáveis forem verdadeiras irá montar o objeto usuário

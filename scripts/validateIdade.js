@@ -3,10 +3,14 @@ import { successValidation } from "./statesValidation/successValidation.js"
 
 // Validar idade
 export function validateIdade(input, value) {
-  const idadeRegex = value.replace(/[^0-9]/g, "");
 
-  if (idadeRegex === "") {
+  if (value == "") {
     errorValidation(input, "Preencha esse campo");
+    return false;
+  }
+
+  if ( value < 1 ) {
+    errorValidation(input, "Idade inválida");
     return false;
   }
 
