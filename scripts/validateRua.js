@@ -1,4 +1,4 @@
-import { validatePattern } from "./validatePattern.js";
+import { validatePattern } from "./validationPattern.js";
 
 // Validar rua
 export function validateRua(input, value) {

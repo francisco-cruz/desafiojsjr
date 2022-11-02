@@ -1,4 +1,4 @@
-import { validatePattern } from "./validatePattern.js";
+import { validatePattern } from "./validationPattern.js";
 
 //Validar Cidade
 export function validateCidade(input, value) {

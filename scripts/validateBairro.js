@@ -1,4 +1,4 @@
-import { validatePattern } from "./validatePattern.js";
+import { validatePattern } from "./validationPattern.js";
 
 // Validar Bairro
 export function validateBairro(input, value) {
