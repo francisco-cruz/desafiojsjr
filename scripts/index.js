@@ -44,9 +44,9 @@ buttonAddHobby.addEventListener("click", () => {
   if (isValideHobbyOnArray) {
     hobbies.push(hobbyRegex);
     hobby.value = "";
+
     renderChip(hobbyRegex);
   }
-  console.log(hobbies);
 });
 
 

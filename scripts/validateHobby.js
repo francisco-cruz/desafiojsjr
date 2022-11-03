@@ -1,6 +1,7 @@
 import { errorValidation } from "./statesValidation/errorValidation.js";
 import { successValidation } from "./statesValidation/successValidation.js"
 import { hobbies } from "./index.js";
+const chips = []
 
 
 // Validar Input Hobby 
@@ -28,27 +29,51 @@ export function validateHobby(input) {
 
 // Renderizar os chips na tela
 export function renderChip(value) {
-    const chip = `
-            <div class="chip" id="${value}">
-            <p>${value}</p>
-            <svg id="${value}" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
-            </div>
-            `;
+    const chipText = `
+        <p>${value}</p>
+    `;
 
-    document.getElementById("chips").innerHTML += chip;
+    const chipIcon = `
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    `;
 
-    const chipAtual = document.querySelector(`.chip#${value}`);
-    const buttonDeleteAtual = chipAtual.querySelector(`#${value}`);
-
-    buttonDeleteAtual.addEventListener('click', () => {
-        deleteHobbie(value);
+    const deleteDivElement = document.createElement("div")
+    deleteDivElement.innerHTML = chipIcon;
+    deleteDivElement.addEventListener('click', () => {
+        deleteHobbie(value)
     })
+    
+    
+    const chipElement = document.createElement("div");
+    chipElement.id = value;
+    chipElement.classList.add("chip");
 
+
+    chipElement.innerHTML += chipText;
+    chipElement.appendChild(deleteDivElement);
+
+    document.getElementById("chips").appendChild(chipElement);
+
+
+    // const buttonDeleteAtual = document.querySelector(`.chip#${value}`);
+    // // console.log(buttonDeleteAtual);
+
+    // buttonDeleteAtual.onclick = () => {
+    //     // console.log("CLICK");
+    //     deleteHobbie(value)
+    // }
+
+    // chips.push(buttonDeleteAtual)
+    // addEventDelete(value)
 }
+
+
+
 
 
 // Deletar Hobby
 function deleteHobbie(hobby) {
+    console.log("oiOIOI");
     const indexHobby = hobbies.indexOf(hobby);
     hobbies.splice(indexHobby, 1);
     removeChipOfScreen(hobby);
