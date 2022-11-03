@@ -107,8 +107,8 @@ a:hover {
 }
 
 #chips {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(50px, auto));
+  display: flex;
+  flex-wrap: wrap;
   justify-content: flex-start;
   max-width: 100%;
   height: auto;
