@@ -54,26 +54,10 @@ export function renderChip(value) {
 
     document.getElementById("chips").appendChild(chipElement);
 
-
-    // const buttonDeleteAtual = document.querySelector(`.chip#${value}`);
-    // // console.log(buttonDeleteAtual);
-
-    // buttonDeleteAtual.onclick = () => {
-    //     // console.log("CLICK");
-    //     deleteHobbie(value)
-    // }
-
-    // chips.push(buttonDeleteAtual)
-    // addEventDelete(value)
 }
-
-
-
-
 
 // Deletar Hobby
 function deleteHobbie(hobby) {
-    console.log("oiOIOI");
     const indexHobby = hobbies.indexOf(hobby);
     hobbies.splice(indexHobby, 1);
     removeChipOfScreen(hobby);
