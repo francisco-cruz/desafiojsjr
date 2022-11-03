@@ -39,13 +39,14 @@ form.addEventListener("submit", (e) => {
 // Botão adicionar Hobby
 buttonAddHobby.addEventListener("click", () => {
   const hobbyRegex = hobby.value.replace(/[0-9]/g, "").trim();
-  const isValideHobbyOnArray = validateHobbyToArray(hobby, hobbyRegex);
+  const isValideHobbyOnArray = validateHobbyToArray(hobby, hobbyRegex); // Validando o valor antes de mandar para o array
 
   if (isValideHobbyOnArray) {
     hobbies.push(hobbyRegex);
     hobby.value = "";
     renderChip(hobbyRegex);
   }
+  console.log(hobbies);
 });
 
 
