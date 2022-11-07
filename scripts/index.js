@@ -53,14 +53,6 @@ buttonAddHobby.addEventListener("click", () => {
 // Consumir api Viacep
 cep.addEventListener("focusout", () => {
   const dataApi = seacherCep(cep, cep.value);
-
-  // Validando CEP
-  if (dataApi['erro']) {
-    errorValidation(cep, "Ocorreu um erro ao buscar esse CEP");
-    return false;
-  }
-
-  completeFields(dataApi)
 });
 
 
