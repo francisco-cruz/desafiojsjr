@@ -66,6 +66,7 @@ function isValideDay(day, month, leapYear) {
       month == 5 ||
       month == 7 ||
       month == 8 ||
+      month == 9 ||
       month == 10 ||
       month == 12
     ) {
