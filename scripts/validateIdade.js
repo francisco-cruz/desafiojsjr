@@ -3,7 +3,6 @@ import { successValidation } from "./statesValidation/successValidation.js"
 
 // Validar idade
 export function validateIdade(input, value) {
-
   if (value == "") {
     errorValidation(input, "Preencha esse campo");
     return false;

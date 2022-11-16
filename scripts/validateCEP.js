@@ -38,7 +38,6 @@ export function seacherCep(input, value) {
     .then(response => {response.json()
         .then(data => completeFields(data))})
     .catch(e => errorValidation(input, "Erro ao procurar esse CEP "))
-
 }
 
 //Preencher campos com dados da api
